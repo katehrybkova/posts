@@ -79,9 +79,8 @@ class Post extends Component {
   };
 
   updatePost = ({ title, body }) => {
-    const { editPost, fetchPostWithComment } = this.props;
+    const { editPost } = this.props;
     const { selectedPostId } = this.state;
-    const id = getIdFromProps(this.props);
     editPost(selectedPostId, { title, body });
     this.closeEditPostModal();
   };
@@ -94,7 +93,7 @@ class Post extends Component {
 
   render() {
     const { items, comments } = this.props;
-    const { text, isEditing } = this.state;
+    const { text, isEditing, selectedPostId } = this.state;
 
     return (
       <article className={css.wrapper}>
@@ -103,14 +102,9 @@ class Post extends Component {
           <h2>{items.title}</h2>
           <p className={css.postBody}>{items.body}</p>
           <ul className={css.commentList}>
-            {items.comments &&
-              items.comments.map(comment => (
-                <li key={comment.id} className={css.commentItem}>
-                  {comment.body}
-                </li>
-              ))}
+
             {comments &&
-              comments.map(comment => (
+              comments.map(comment => comment.postId === selectedPostId && (
                 <li key={comment.id} className={css.commentItem}>
                   {comment.body}
                 </li>

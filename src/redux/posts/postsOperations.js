@@ -12,6 +12,9 @@ import {
   editPostRequest,
   editPostSuccess,
   editPostError,
+  delPostRequest,
+  delPostSuccess,
+  delPostError,
 } from './postsActions';
 
 export const fetchPosts = () => dispatch => {
@@ -62,5 +65,18 @@ export const editPost = (id, updatedPost) => dispatch => {
     })
     .catch(error => {
       dispatch(editPostError(error));
+    });
+};
+
+export const delPost = (id) => dispatch => {
+  dispatch(delPostRequest());
+
+  axios
+    .delete(`https://bloggy-api.herokuapp.com/posts/${id}`)
+    .then(res => {
+      dispatch(delPostSuccess(res.data));
+    })
+    .catch(error => {
+      dispatch(delPostError(error));
     });
 };

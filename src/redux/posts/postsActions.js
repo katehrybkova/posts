@@ -11,6 +11,9 @@ export const ActionType = {
   EDIT_POST_REQUEST: 'EDIT_POST_REQUEST',
   EDIT_POST_SUCCESS: 'EDIT_POST_SUCCESS',
   EDIT_POST_ERROR: 'EDIT_POST_ERROR',
+  DEL_POST_REQUEST: 'DEL_POST_REQUEST',
+  DEL_POST_SUCCESS: 'DEL_POST_SUCCESS',
+  DEL_POST_ERROR: 'DEL_POST_ERROR',
 };
 
 // FETCH_POSTS
@@ -89,6 +92,23 @@ export const editPostSuccess = (id, updatedPost) => ({
 
 export const editPostError = error => ({
   type: ActionType.EDIT_POST_ERROR,
+  payload: {
+    error,
+  },
+});
+// DEL_POST
+
+export const delPostRequest = () => ({
+  type: ActionType.DEL_POST_REQUEST,
+});
+
+export const delPostSuccess = (id) => ({
+  type: ActionType.DEL_POST_SUCCESS,
+  payload: id,
+});
+
+export const delPostError = error => ({
+  type: ActionType.DEL_POST_ERROR,
   payload: {
     error,
   },

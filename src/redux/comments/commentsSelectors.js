@@ -1,4 +1,5 @@
-export const getComments = state => state.comments.items;
+export const getComments = state =>
+  state.comments;
 
 // DUMMY
 export const dummy = () => null;

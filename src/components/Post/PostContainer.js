@@ -5,6 +5,7 @@ import * as commentsOperations from '../../redux/comments/commentsOperations';
 import * as postsSelectors from '../../redux/posts/postsSelectors';
 import { getComments } from '../../redux/comments/commentsSelectors';
 
+
 const mapStateToProps = state => ({
   items: postsSelectors.getPostWithComments(state),
   comments: getComments(state),

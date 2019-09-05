@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux';
-import { ActionType } from './postsActions';
+import { combineReducers } from "redux";
+import { ActionType } from "./postsActions";
 
 const itemsReducer = (state = [], { type, payload }) => {
   switch (type) {
@@ -11,9 +11,10 @@ const itemsReducer = (state = [], { type, payload }) => {
 
     case ActionType.EDIT_POST_SUCCESS:
       return state.map(post =>
-        post.id === payload.id ? payload.updatedPost : post,
+        post.id === payload.id ? payload.updatedPost : post
       );
-
+    case ActionType.DEL_POST_SUCCESS:
+      return state.filter(post => post.id !== payload);
     default:
       return state;
   }
@@ -34,6 +35,7 @@ const loadingReducer = (state = false, { type }) => {
     case ActionType.FETCH_POST_WITH_COMMENTS_REQUEST:
     case ActionType.ADD_POST_REQUEST:
     case ActionType.EDIT_POST_REQUEST:
+    case ActionType.DEL_POST_REQUEST:
       return true;
     case ActionType.FETCH_POSTS_SUCCESS:
     case ActionType.FETCH_POSTS_ERROR:
@@ -43,6 +45,8 @@ const loadingReducer = (state = false, { type }) => {
     case ActionType.ADD_POSTS_ERROR:
     case ActionType.EDIT_POST_SUCCESS:
     case ActionType.EDIT_POST_ERROR:
+    case ActionType.DEL_POST_SUCCESS:
+    case ActionType.DEL_POST_ERROR:
       return false;
 
     default:
@@ -73,5 +77,5 @@ export default combineReducers({
   items: itemsReducer,
   item: itemReducer,
   loading: loadingReducer,
-  error: errorReducer,
+  error: errorReducer
 });

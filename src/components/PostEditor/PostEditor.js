@@ -36,7 +36,6 @@ this.props.onSave(this.state)
   }
 
   render() {
-    console.log(this.props)
     const { title, body } = this.state;
     const { onCancel } = this.props;
 
